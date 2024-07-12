@@ -41,7 +41,7 @@
 
 
 
----bash
+```bash
 
 poetry shell
 

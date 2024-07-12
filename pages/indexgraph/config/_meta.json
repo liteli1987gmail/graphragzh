@@ -1,8 +1,8 @@
 {
+  "overview": "概述（Overview）",
   "custom": "自定义（Custom）",
   "env_vars": "环境变量（EnvVars）",
   "init": "初始化（Init）",
   "json_yaml": "JSON/YAML（JsonYaml）",
-  "overview": "概述（Overview）",
   "template": "模板（Template）"
 }

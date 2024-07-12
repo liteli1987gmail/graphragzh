@@ -4,7 +4,7 @@
 
 例如：
 
----
+```
 # .env
 API_KEY=some_api_key
 

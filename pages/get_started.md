@@ -28,7 +28,7 @@
 
 # 安装 GraphRAG
 
----bash
+```bash
 pip install graphrag
 ```
 

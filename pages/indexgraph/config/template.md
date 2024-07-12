@@ -10,7 +10,7 @@
 
 ### 最小配置
 
----bash
+```bash
 # 基本LLM设置
 GRAPHRAG_API_KEY="your_api_key"
 GRAPHRAG_API_BASE="http://<domain>.openai.azure.com" # 适用于Azure OpenAI用户

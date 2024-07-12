@@ -12,7 +12,7 @@ GraphRAG 提供了创建领域适应性模板用于生成知识图的功能。�
 
 你可以在命令行上使用各种选项运行主脚本：
 
----bash
+```bash
 python -m graphrag.prompt_tune [--root ROOT] [--domain DOMAIN]  [--method METHOD] [--limit LIMIT] [--language LANGUAGE] [--max-tokens MAX_TOKENS] [--chunk-size CHUNK_SIZE] [--no-entity-types] [--output OUTPUT]
 ```
 

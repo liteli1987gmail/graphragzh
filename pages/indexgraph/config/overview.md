@@ -44,7 +44,7 @@ GraphRAG 索引化包是一个数据流水线和转换套件，旨在使用 LLM 
 
 ### CLI
 
----bash
+```bash
 # 通过Poetry
 poetry run poe cli --root <data_root> # 默认配置模式
 poetry run poe cli --config your_pipeline.yml # 自定义配置模式
