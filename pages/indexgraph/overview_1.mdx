@@ -1,0 +1,73 @@
+
+# GraphRAG 索引化包
+
+GraphRAG 索引化包是一个数据流水线和转换套件，旨在使用 LLM 从非结构化文本中提取有意义的结构化数据。
+
+索引流水线是可配置的。它由工作流、标准步骤和自定义步骤、提示模板以及输入/输出适配器组成。我们的标准流水线旨在：
+
+- 从原始文本中提取实体、关系和主张
+- 对实体进行社区检测
+- 在多个粒度级别生成社区摘要和报告
+- 将实体嵌入到图向量空间中
+- 将文本块嵌入到文本向量空间中
+
+流水线的输出可以以多种格式存储，包括 JSON 和 Parquet，或者可以通过 Python API 手动处理。
+
+## 入门指南
+
+### 要求
+
+请参阅【开始开发】中的【要求】部分，详细了解如何设置开发环境。
+
+索引引擎可以在默认配置模式或自定义流水线模式下使用。
+要配置 GraphRAG，请参阅【配置】文档。
+在拥有配置文件之后，你可以使用 CLI 或 Python API 运行流水线。
+
+## 使用方法
+
+### CLI
+
+```bash
+# 通过Poetry
+poetry run poe cli --root <data_root> # 默认配置模式
+poetry run poe cli --config your_pipeline.yml # 自定义配置模式
+
+# 通过Node
+yarn run:index --root <data_root> # 默认配置模式
+yarn run:index --config your_pipeline.yml # 自定义配置模式
+
+```
+
+### Python API
+
+```python
+from graphrag.index import run_pipeline
+from graphrag.index.config import PipelineWorkflowReference
+
+workflows: list[PipelineWorkflowReference] = [
+    PipelineWorkflowReference(
+        steps=[
+            {
+                # 内置动词
+                "verb": "derive",  # https://github.com/microsoft/datashaper/blob/main/python/datashaper/datashaper/engine/verbs/derive.py
+                "args": {
+                    "column1": "col1",  # 从上面获取
+                    "column2": "col2",  # 从上面获取
+                    "to": "col_multiplied",  # 新列名
+                    "operator": "*",  # 两列相乘
+                },
+                # 由于我们正在尝试对默认输入进行操作，因此不需要显式指定输入
+            }
+        ]
+    ),
+]
+
+dataset = pd.DataFrame([{"col1": 2, "col2": 4}, {"col1": 5, "col2": 10}])
+outputs = []
+async for output in await run_pipeline(dataset=dataset, workflows=workflows):
+    outputs.append(output)
+pipeline_result = outputs[-1]
+print(pipeline_result)
+```
+
+## 进一步阅读

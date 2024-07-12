@@ -1,0 +1,46 @@
+
+
+
+---
+title: 全局搜索 🔎
+navtitle: 全局搜索
+tags: [post, 编排]
+layout: page
+date: 2024-06-03
+---
+
+# 全局搜索 🔎
+
+## 整个数据集的推理
+
+基准的 RAG 对于需要对数据集中的信息进行聚合以组成答案的查询很难处理。像“数据中前 5 个主题是什么？”这样的查询表现非常糟糕，因为基准的 RAG 依赖于对数据集中语义相似文本内容的向量搜索。查询中没有任何指示它找到正确信息的内容。
+
+然而，使用 GraphRAG，我们可以回答这样的问题，因为 LLM 生成的知识图的结构告诉我们整个数据集的结构（因此也是主题）。这使得私有数据集可以被组织成有意义的语义聚类，并进行预摘要。使用我们的 [全局搜索](https://github.com/microsoft/graphrag/blob/main//graphrag/query/structured_search/global_search/) 方法，LLM 在响应用户查询时使用这些聚类来总结这些主题。
+
+## 方法论
+
+![流程图](/img/globalsearch.png)
+
+根据用户查询和可选的对话历史，全局搜索方法使用一系列来自图的社区层次结构中指定级别的社区报告作为上下文数据，以映射-减少的方式生成响应。在 `map` 步骤中，将社区报告分割成预定义大小的文本块。然后，使用每个文本块生成一个包含一系列具有附带的数值评级的点的中级回应。在 `reduce` 步骤中，从中级回应中筛选出一组最重要的点，并将其聚合使用作为上下文来生成最终的响应。
+
+全局搜索的响应质量很大程度上取决于所选的用于获取社区报告的社区层次结构级别。较低层次的层次结构带有其详细报告，往往会产生更详尽的响应，但可能也会增加生成最终响应所需的时间和 LLM 资源，因为需要处理更多的报告。
+
+## 配置
+
+下面是 [GlobalSearch 类](https://github.com/microsoft/graphrag/blob/main//graphrag/query/structured_search/global_search/search.py) 的关键参数：
+* `llm`：用于响应生成的 OpenAI 模型对象
+* `context_builder`：用于从社区报告中准备上下文数据的 [上下文构建器](https://github.com/microsoft/graphrag/blob/main//graphrag/query/structured_search/global_search/community_context.py) 对象
+* `map_system_prompt`：`map` 阶段使用的提示模板。默认模板可以在 [map_system_prompt](https://github.com/microsoft/graphrag/blob/main//graphrag/query/structured_search/global_search/map_system_prompt.py) 中找到
+* `reduce_system_prompt`：`reduce` 阶段使用的提示模板。默认模板可以在 [reduce_system_prompt](https://github.com/microsoft/graphrag/blob/main//graphrag/query/structured_search/global_search/reduce_system_prompt.py) 中找到
+* `response_type`：描述所需响应类型和格式的自由文本（例如，`多段落`，`多页报告`）
+* `allow_general_knowledge`：将其设置为 True 将在 `reduce_system_prompt` 中添加额外的指令，提示 LLM 在数据集以外的相关真实世界知识。请注意，这可能会增加凭空虚构的可能性，但对于某些场景可能很有用。默认值为 False
+* `general_knowledge_inclusion_prompt`：如果启用了 `allow_general_knowledge`，则添加到 `reduce_system_prompt` 中的指令。默认指令可以在 [general_knowledge_instruction](https://github.com/microsoft/graphrag/blob/main//graphrag/query/structured_search/global_search/reduce_system_prompt.py) 中找到
+* `max_data_tokens`：上下文数据的令牌预算
+* `map_llm_params`：一个字典，包含将在 `map` 阶段传递给 LLM 调用的其他参数（例如，temperature，max_tokens）
+* `reduce_llm_params`：一个字典，包含将在 `reduce` 阶段传递给 LLM 调用的其他参数（例如，temperature，max_tokens）
+* `context_builder_params`：一个字典，用于在 `map` 阶段构建上下文窗口时传递给 [`context_builder`](https://github.com/microsoft/graphrag/blob/main//graphrag/query/structured_search/global_search/community_context.py) 对象的其他参数。
+* `concurrent_coroutines`：控制 `map` 阶段的并行程度。
+* `callbacks`：可选的回调函数，可用于为 LLM 的完成流事件提供定制的事件处理程序。
+
+
+以下是一个全局搜索场景的示例，可以在以下 [notebook](https://microsoft.github.io/graphrag/posts/query/notebooks/global_search_nb/) 中找到。 

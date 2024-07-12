@@ -1,0 +1,87 @@
+
+import Head from 'next/head'
+
+<Head>
+<meta name="baidu-site-verification" content="codeva-vVWLPfYJJm" />
+  <script>
+    {
+      `(function() {
+         var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?e60fb290e204e04c5cb6f79b0ac1e697";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+       })();`
+    }
+  </script>
+</Head>
+
+[![LangChain AI课程](https://www.aiqbh.com/kecheng.png 'LangChain AI 课程')](https://www.zhihu.com/education/training/sku-detail/1684651118276382720?edu_sku_id=1684651118276382720&education_channel_code=LangChain-4edce0cdbc33183c)
+
+[![LangChain AI 学习社群](https://www.aiqbh.com/jiaqun.jpg 'LangChain AI 学习社群')](https://www.aiqbh.com/dalibao.html)
+
+【10000个AI开发者，在这等你入群】[点击领取](https://www.aiqbh.com/dalibao.html)
+
+-  免费领取：OpenAI GPT KEY
+-  免费直播课：2节 知乎 AI 全栈工程师直播课
+-  免费在线课：60 分钟入门 LangChain 课程
+-  免费图书：30 本精选人工智能电子书 PDF
+-  免费报告：500 份人工智能行业报告 PDF
+-  免费视频：大语言模型开发应用视频教程  
+
+# GraphRAG 简介
+
+👉 [Microsoft Research 博客文章](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/)
+👉 [GraphRAG 加速器](https://github.com/Azure-Samples/graphrag-accelerator)
+👉 [GitHub 存储库](https://github.com/microsoft/graphrag)
+👉 [GraphRAG Arxiv 文章](https://arxiv.org/pdf/2404.16130)
+
+![图 1：使用 GPT-4 Turbo 构建的 LLM 生成的知识图谱。](/img/graph.png)
+
+GraphRAG 是一种结构化的、分层的检索增强生成（RAG）方法，而不是使用纯文本片段的语义搜索方法。GraphRAG 过程包括从原始文本中提取出知识图谱，构建社群层级(这种结构通常用来描述个体、群体及它们之间的关系，帮助理解信息如何在社群内部传播、知识如何共享以及权力和影响力如何分布)，为这些社群层级生成摘要，然后在执行基于 RAG 的任务时利用这些结构。
+
+要了解有关 GraphRAG 及其如何增强 LLM 对私有数据进行推理的信息，请访问 [Microsoft Research 博客文章](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/)。
+
+## 解决方案加速器🚀
+
+为了快速开始使用 GraphRAG 系统，我们建议尝试 [解决方案加速器](https://github.com/Azure-Samples/graphrag-accelerator) 软件包。这提供了与 Azure 资源一起使用的用户友好的端到端体验。
+
+## 开始使用 GraphRAG 🚀
+
+要开始使用 GraphRAG，请查看 [_入门指南_](posts/get_started)。
+要更深入地了解主要子系统，请访问 [索引](posts/index/overview) 和 [查询](posts/query/overview) 包的文档页面。
+
+## GraphRAG vs 基线 RAG 🔍
+
+检索增强生成（RAG）是一种通过使用现实世界的信息来改进 LLM 输出的技术。这种技术是大多数基于 LLM 的工具的重要组成部分，大多数 RAG 方法使用矢量相似性作为搜索技术，我们称之为_基线 RAG_。GraphRAG 使用知识图谱来在处理复杂信息时提供问题和回答性能的显著改进。RAG 技术在帮助 LLM 推理_私有数据集_方面显示出很大的潜力-这些数据集是 LLM 未经训练并且从未见过的数据，例如企业的专有研究、商业文件或通信。_基线 RAG_的目的是帮助解决这个问题，但我们观察到在某些情况下，基线 RAG 的性能非常差。例如：
+
+- 基线 RAG 难以连接各个要点。这种情况发生在回答问题需要通过共享属性遍历不同的信息片段，以提供新的综合见解时。
+- 基线 RAG 在被要求全面理解大量的数据（跨文档）或甚至单个大文档的的语义概念时表现不佳。
+
+为了解决这个问题，技术界正在努力开发扩展和增强 RAG 的方法。微软研究团队提出了一种新方法，即 GraphRAG，它使用 LLMs 来创建基于输入语料库的知识图谱。这个知识图谱以及社群层级摘要和知识图谱机器学习输出在查询时间用于增强提示。GraphRAG 在回答上述两类问题时显示出显著的改进，展示了超过之前应用于私有数据集的其他方法的智能或掌握能力。
+
+## GraphRAG 过程🤖
+
+GraphRAG 基于我们之前的 [研究](https://www.microsoft.com/en-us/worklab/patterns-hidden-inside-the-org-chart) 和 [工具](https://github.com/graspologic-org/graspologic)，使用知识图谱机器学习。GraphRAG 的基本步骤如下：
+
+### 索引
+
+- 将输入语料库分割为一系列的文本单元（TextUnits），这些单元作为处理以下步骤的可分析单元，并在我们的输出中提供细粒度的引用。
+- 使用 LLM 从文本单元中提取所有实体、关系和关键声明。
+- 使用 [Leiden 技术](https://arxiv.org/pdf/1810.08473.pdf) 对知识图谱进行层次聚类。要查看视觉效果，请参见上面的图 1。每个圆圈都是一个实体（例如人、地点或组织），大小表示实体的度，颜色表示其社群层级。
+- 自下而上地生成每个社群层级及其组成部分的摘要。这有助于对数据集的整体理解。
+
+### 查询
+
+在查询时，使用这些结构为 LLM 上下文窗口提供材料来回答问题。主要查询模式有：
+
+- [_全局搜索_](posts/query/0-global_search)，用于通过利用社群层级摘要来推理有关语料库的整体问题。
+- [_局部搜索_](posts/query/1-local_search)，用于通过扩展到其邻居和相关概念来推理特定实体的情况。
+
+### 提示调整
+
+
+使用_GraphRAG_可能不会立即产生最佳结果。我们强烈建议根据我们文档中的 [提示优化指南](posts/prompt_tuning/overview/) 来细化你的提示。
+

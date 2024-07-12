@@ -1,0 +1,4 @@
+{
+  "auto_prompt_tuning": "自动提示调优（AutoPromptTuning）",
+  "manual_prompt_tuning": "手动提示调优（ManualPromptTuning）"
+}
