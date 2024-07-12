@@ -11,7 +11,7 @@
 
 👉 [从 pypi 安装](https://pypi.org/project/graphrag/) 
 
-👉 [从源码使用](/posts/developing)
+👉 [从源码使用](/developing)
 
 ## 快速入门
 
@@ -19,8 +19,8 @@
 
 # 顶级模块
 
-[索引流程概述](/posts/index/overview)
-[查询引擎概述](/posts/query/overview)
+[索引流程概述](/indexgraph/overview)
+[查询引擎概述](/indexgraph/query/overview)
 
 # 概述
 
@@ -34,7 +34,7 @@ pip install graphrag
 
 # 运行索引器
 
-现在我们需要设置一个数据项目和一些初始配置。让我们来设置它。我们使用[默认配置模式](/posts/config/overview/)，你可以根据需要自定义一个[配置文件](/posts/config/json_yaml/)（我们建议），或者使用[环境变量](/posts/config/env_vars/)。
+现在我们需要设置一个数据项目和一些初始配置。让我们来设置它。我们使用[默认配置模式](/indexgraph/config/overview/)，你可以根据需要自定义一个[配置文件](/indexgraph/config/json_yaml/)（我们建议），或者使用[环境变量](/indexgraph/config/env_vars/)。
 
 首先让我们准备一个示例数据集：
 
@@ -52,7 +52,7 @@ curl https://www.gutenberg.org/cache/epub/24022/pg24022.txt > ./ragtest/input/bo
 
 ## 设置你的工作区变量
 
-首先，请确保设置必需的环境变量。有关这些环境变量的详细信息以及可用的环境变量，请参阅[变量文档](/posts/config/overview/)。
+首先，请确保设置必需的环境变量。有关这些环境变量的详细信息以及可用的环境变量，请参阅[变量文档](/indexgraph/config/overview/)。
 
 为了初始化你的工作区，让我们首先运行`graphrag.index --init`命令。由于我们已经在上一步中配置了一个名为\.ragtest`的目录，我们可以运行以下命令：
 
@@ -81,9 +81,9 @@ api_version: 2024-02-15-preview # 你可以自定义此版本
 deployment_name: <azure_model_deployment_name>
 ```
 
-- 有关配置GraphRAG的更多详细信息，请参阅[配置文档](/posts/config/overview/)。
-- 要了解更多有关初始化的详细信息，请参阅[初始化文档](/posts/config/init/)。
-- 要了解有关使用CLI的更多详细信息，请参阅[CLI文档](/posts/query/3-cli/)。
+- 有关配置GraphRAG的更多详细信息，请参阅[配置文档](/indexgraph/config/overview/)。
+- 要了解更多有关初始化的详细信息，请参阅[初始化文档](/indexgraph/config/init/)。
+- 要了解有关使用CLI的更多详细信息，请参阅[CLI文档](/indexgraph/query/3-cli/)。
 
 ## 运行索引流程
  
@@ -123,4 +123,4 @@ python -m graphrag.query \
 "Scrooge 这个故事的主人公是谁，他的主要关系是什么？"
 ```
 
-详细了解如何利用我们的本地搜索和全局搜索机制从数据中提取有意义的见解的方法，请参阅[Query Engine](/posts/query/overview)文档，了解更多详细信息。在索引器执行完毕后如何运用本地和全局搜索机制提取有意义的见解。 
+详细了解如何利用我们的本地搜索和全局搜索机制从数据中提取有意义的见解的方法，请参阅[Query Engine](/indexgraph/query/overview)文档，了解更多详细信息。在索引器执行完毕后如何运用本地和全局搜索机制提取有意义的见解。 

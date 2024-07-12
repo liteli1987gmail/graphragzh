@@ -6,17 +6,11 @@ GraphRAG 系统具有高度可配置性。本页面提供了有关 GraphRAG 索�
 
 默认配置模式是使用 GraphRAG 系统的最简单方法。它旨在通过最小的配置即可立即使用。下面描述了索引引擎管道的主要配置部分。使用默认配置模式设置 GraphRAG 的主要方法如下：
 
-- [Init 命令](/posts/config/init)（推荐）
-- [纯使用环境变量](/posts/config/env_vars)
-- [使用 JSON 或 YAML 进行更深层次的控制](/posts/config/json_yaml)
+- [Init 命令](/indexgraph/config/init)（推荐）
+- [纯使用环境变量](/indexgraph/config/env_vars)
+- [使用 JSON 或 YAML 进行更深层次的控制](/indexgraph/config/json_yaml)
 
 
----
-title: GraphRAG 索引化 🤖
-navtitle: 索引概述
-layout: page
-tags: [post]
----
 
 GraphRAG 索引化包是一个数据流水线和转换套件，旨在使用 LLM 从非结构化文本中提取有意义的结构化数据。
 
@@ -108,7 +102,7 @@ date: 2024-06-13
 
 ## 自动模板化
 
-自动模板化利用你的输入数据和 LLM 交互来创建领域自适应模板，用于生成知识图谱。强烈建议运行它，以获得在执行索引运行时更好的结果。有关如何使用它的更多详细信息，请参阅 [自动模板化](/posts/prompt_tuning/auto_prompt_tuning) 文档。
+自动模板化利用你的输入数据和 LLM 交互来创建领域自适应模板，用于生成知识图谱。强烈建议运行它，以获得在执行索引运行时更好的结果。有关如何使用它的更多详细信息，请参阅 [自动模板化](/indexgraph/prompt_tuning/auto_prompt_tuning) 文档。
 
 
 ---
@@ -120,8 +114,8 @@ tags: [post, notebook]
 
 关于运行查询的示例，请参考以下笔记本：
 
-- [全局搜索笔记本](/posts/query/notebooks/global_search_nb)
-- [本地搜索笔记本](/posts/query/notebooks/local_search_nb)
+- [全局搜索笔记本](https://microsoft.github.io/graphrag/posts/query/notebooks/global_search_nb/)
+- [本地搜索笔记本](https://microsoft.github.io/graphrag/posts/query/notebooks/local_search_nb/)
 
 这些笔记本的测试数据集可以在 [此处](/data/operation_dulce/dataset.zip) 找到。 
 ---
@@ -131,7 +125,7 @@ tags: [post]
 layout: page
 ---
 
-查询引擎是图形 RAG 图书馆的检索模块之一。它是图形 RAG 图书馆的两个主要组成部分之一，另一个是索引管道（请参阅 [索引管道](/posts/index/overview)）。
+查询引擎是图形 RAG 图书馆的检索模块之一。它是图形 RAG 图书馆的两个主要组成部分之一，另一个是索引管道（请参阅 [索引管道](/indexgraph/overview)）。
 它负责以下任务：
 
 - [本地搜索](#local-search)
@@ -142,31 +136,31 @@ layout: page
 
 本地搜索方法通过将 AI 提取的知识图谱中的相关数据与原始文档的文本块结合起来生成答案。这种方法适用于需要理解文档中提到的特定实体的问题（例如，洋甘菊具有哪些疗效？）。
 
-有关本地搜索的详细信息，请参阅 [本地搜索](/posts/query/1-local_search) 文档。
+有关本地搜索的详细信息，请参阅 [本地搜索](/indexgraph/query/1-local_search) 文档。
 
 ## 全局搜索
 
 全局搜索方法以 MapReduce 的方式在所有 AI 生成的社区报告上进行搜索生成答案。这是一种资源密集型方法，但对于需要整体理解数据集的问题通常能提供良好的响应（例如，这个笔记本中提到的草药的最重要价值是什么？）。
 
-更多关于此的信息可以在 [全局搜索](/posts/query/0-global_search) 文档中查看。
+更多关于此的信息可以在 [全局搜索](/indexgraph/query/0-global_search) 文档中查看。
 
 ## 问题生成
 
 
 
-自定义配置模式是一个高级用法。大多数用户将使用默认配置。索引引擎管道的主要配置部分如下所述。有关如何使用自定义配置的详细信息，请参阅 [自定义配置模式](/posts/config/custom) 文档。
+自定义配置模式是一个高级用法。大多数用户将使用默认配置。索引引擎管道的主要配置部分如下所述。有关如何使用自定义配置的详细信息，请参阅 [自定义配置模式](/indexgraph/config/custom) 文档。
 
 
-- 要开始在 GraphRAG 项目中进行开发，请参阅 [入门指南](/posts/developing/)
-- 要了解索引库的基本概念和执行模型，请参阅 [体系结构文档](/posts/index/0-architecture/)
+- 要开始在 GraphRAG 项目中进行开发，请参阅 [入门指南](/developing/)
+- 要了解索引库的基本概念和执行模型，请参阅 [体系结构文档](/indexgraph/0-architecture/)
 - 要使用一系列示例开始运行，请参阅 [示例文档](https://github.com/microsoft/graphrag/blob/main/examples/README.md)
-- 要了解更多关于配置索引引擎的信息，请参阅 [配置文档](/posts/config/overview)
+- 要了解更多关于配置索引引擎的信息，请参阅 [配置文档](/indexgraph/config/overview)
 
 
 
 
-手动配置是一个高级用例。大多数用户将希望使用自动模板功能。有关如何使用手动配置的详细信息，请参阅 [手动提示配置](/posts/prompt_tuning/manual_prompt_tuning) 文档。
+手动配置是一个高级用例。大多数用户将希望使用自动模板功能。有关如何使用手动配置的详细信息，请参阅 [手动提示配置](/indexgraph/prompt_tuning/manual_prompt_tuning) 文档。
 
 这个功能接收一个用户查询的列表，并生成下一个候选问题。这对于在对话中生成后续问题或者为调查人员生成深入研究数据集的问题列表非常有用。
 
-关于问题生成的工作原理的信息可以在 [问题生成](/posts/query/2-question_generation) 文档页面找到。
+关于问题生成的工作原理的信息可以在 [问题生成](/indexgraph/query/2-question_generation) 文档页面找到。

@@ -25,7 +25,7 @@ python -m graphrag.index --init --root ./ragtest
 
 - `settings.yaml` - 配置设置文件。此文件包含GraphRAG的配置设置。
 - `.env` - 环境变量文件。这些变量在`settings.yaml`文件中引用。
-- `prompts/` - LLM提示文件夹。这包含了GraphRAG使用的默认提示，你可以修改它们或运行[自动提示调优](/posts/prompt_tuning/auto_prompt_tuning)命令以生成适应你的数据的新提示。
+- `prompts/` - LLM提示文件夹。这包含了GraphRAG使用的默认提示，你可以修改它们或运行[自动提示调优](/indexgraph/prompt_tuning/auto_prompt_tuning)命令以生成适应你的数据的新提示。
 
 ## 下一步操作
-在初始化你的工作区之后，你可以运行[Prompt Tuning](/posts/prompt_tuning/auto_prompt_tuning)命令来使提示适应你的数据，甚至可以开始运行[Indexing Pipeline](/posts/index/overview)来索引你的数据。有关配置GraphRAG的更多信息，请参阅[Configuration](/posts/config/overview)文档。
+在初始化你的工作区之后，你可以运行[Prompt Tuning](/indexgraph/prompt_tuning/auto_prompt_tuning)命令来使提示适应你的数据，甚至可以开始运行[Indexing Pipeline](/indexgraph/overview)来索引你的数据。有关配置GraphRAG的更多信息，请参阅[Configuration](/indexgraph/config/overview)文档。

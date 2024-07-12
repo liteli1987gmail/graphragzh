@@ -42,9 +42,9 @@
 
 `"任何可能与信息发现相关的主张或事实。"`
 
-有关如何更改此配置的详细信息，请参阅 [配置文档](/posts/config/overview/)。
+有关如何更改此配置的详细信息，请参阅 [配置文档](/indexgraph/config/overview/)。
 
-## 生成社群结构报告
+## 生成社区结构报告
 
 [提示来源](http://github.com/microsoft/graphrag/blob/main/graphrag/index/graph/extractors/community_reports/prompts.py)
 

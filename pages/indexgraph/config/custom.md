@@ -2,7 +2,7 @@
 
 以下是索引引擎管道的主要配置部分。每个配置部分都可以用 Python（用于 Python API 模式）或 YAML 来表示，但为简洁起见，这里展示了 YAML。
 
-使用自定义配置是一个高级用例。大多数用户将希望使用 [默认配置](/posts/config/overview)。
+使用自定义配置是一个高级用例。大多数用户将希望使用 [默认配置](/indexgraph/config/overview)。
 
 ## 索引引擎示例
 

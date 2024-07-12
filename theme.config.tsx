@@ -7,11 +7,11 @@ import Banner from './components/Banner'
 
 
 const config: DocsThemeConfig = {
-  logo: <span>GraphRAG 🦜️🔗 中文网，跟着LangChain一起学LLM/GPT开发</span>,
+  logo: <span>GraphRAG 中文网</span>,
   project: {
-    link: 'https://github.com/liteli1987gmail/langchainzh'
+    link: 'https://github.com/liteli1987gmail/graphragzh'
   },
-  docsRepositoryBase: 'https://github.com/liteli1987gmail/langchainzh',
+  docsRepositoryBase: 'https://github.com/liteli1987gmail/graphragzh',
   head: () => {
       const { asPath, defaultLocale, locale } = useRouter()
       const { frontMatter } = useConfig()
@@ -37,9 +37,9 @@ const config: DocsThemeConfig = {
       const { asPath } = useRouter()
       var titleTemplate = ''
       if (asPath !== '/') {
-        titleTemplate = `%s | LangChain中文网:500页中文文档教程，助力大模型LLM应用开发从入门到精通`
+        titleTemplate = `%s | GraphRAG:中文文档教程，助力大模型LLM应用开发从入门到精通`
       }else{
-        titleTemplate = `LangChain中文网:500页中文文档教程，助力大模型LLM应用开发从入门到精通`
+        titleTemplate = `GraphRAG:中文文档教程，助力大模型LLM应用开发从入门到精通`
       }
       return {
         'titleTemplate':titleTemplate
@@ -55,7 +55,7 @@ const config: DocsThemeConfig = {
     )
   },
   footer: {
-    text: <div><span>MIT {new Date().getFullYear()} © <a href="https://www.langchain.com.cn/" target="_blank">Langchain中文网</a>. 跟着langchain学AI应用开发    </span>
+    text: <div><span>MIT {new Date().getFullYear()} © <a href="https://www.langchain.com.cn/" target="_blank">GraphRAG</a>. 跟着langchain学AI应用开发    </span>
     <span><a href="https://www.r-p-a.com/llm-gpt-kaifa/" target="_blank">    LLM/GPT应用外包开发    |</a></span>
     <span><a href="https://www.openaidoc.com.cn" target="_blank">    OpenAI 文档    |</a></span>
     <span><a href="https://www.milvus-io.com" target="_blank">    Milvus 文档    |</a></span>

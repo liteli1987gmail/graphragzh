@@ -1,10 +1,5 @@
----
-title: 索引架构
-navtitle: 架构
-tags: [帖子, 索引]
-layout: 页面
-date: 2023-01-01
----
+# 索引架构
+
 
 ## 关键概念
 
@@ -25,7 +20,7 @@ DataShaper 在 JavaScript 和 Python 中有实现，并且被设计为可扩展�
 每个步骤都有一个动词名称和配置对象。
 在 DataShaper 中，这些动词模拟关系概念，例如 SELECT、DROP、JOIN 等。每个动词转换输入数据表，并将该表传递到流水线。
 
-![DataShaper 工作流程](img/LLM-based Workflow Steps.png)
+![DataShaper 工作流程](/img/1.png)
 
 ### 基于 LLM 的工作流步骤
 
@@ -36,7 +31,7 @@ GraphRAG 的索引管道在我们的 DataShaper 库提供的标准关系动词�
 由于我们的数据索引任务的复杂性，我们需要能够将数据流水线表示为多个相互依赖的工作流程的系列。
 在 GraphRAG 索引管道中，每个工作流程可能对其他工作流程有依赖关系，从而形成一个有向无环图（DAG）的工作流程，然后用于调度处理。
 
-![](/img/Dataframe Message Format.png)
+![](/img/f.png)
 
 ### Dataframe 消息格式
 

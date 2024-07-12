@@ -1,9 +1,9 @@
 {
+  "overview":"概述",
   "0-architecture": "架构（Architecture）",
   "1-default_dataflow": "默认数据流（DefaultDataflow）",
   "2-cli": "命令行界面（Cli）",
   "config": "配置（Config）",
-  "overview_1": "概述（Overview）",
   "prompt": "提示词中文版（Prompt）",
   "prompt_tuning": "提示调优（PromptTuning）"
 }
